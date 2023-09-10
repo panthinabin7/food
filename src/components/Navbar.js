@@ -25,12 +25,25 @@ const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <Link className="nav-link active fs-5" aria-current="page" to="/">
-                Home
-              </Link>
-              <Link className="nav-link active fs-5" to="/login">
-                Login
-              </Link>
+              <li className="nav-link active">
+                <Link
+                  className="nav-link active fs-5"
+                  aria-current="page"
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="nav-link active">
+                <Link className="nav-link active fs-5" to="/login">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-link active">
+                <Link className="nav-link active fs-5" to="/createuser">
+                  SignUp
+                </Link>
+              </li>
             </div>
           </div>
         </div>
