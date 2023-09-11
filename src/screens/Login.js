@@ -17,8 +17,8 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: credentials.name,
         email: credentials.email,
+        password: credentials.password,
       }),
     });
     const json = await response.json();
@@ -27,6 +27,8 @@ const Login = () => {
       alert("Enter valid Credentials");
     }
     if (json.success) {
+      localStorage.setItem("authToken", json.authToken);
+      console.log(localStorage.getItem("authToken"));
       navigate("/");
     }
   };
