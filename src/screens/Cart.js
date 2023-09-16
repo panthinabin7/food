@@ -2,6 +2,8 @@ import React from "react";
 // import Delete from "@material-ui/icons/Delete";
 import { useCart, useDispatchCart } from "../components/ContextReducer";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+// import flatted from "flatted";
+
 export default function Cart() {
   let data = useCart();
   let dispatch = useDispatchCart();
@@ -13,10 +15,11 @@ export default function Cart() {
     );
   }
 
-  const handleCheckOut = async () => {
+  const handleCheckOut = async (e) => {
+    e.preventDefault();
     let userEmail = localStorage.getItem("userEmail");
-    // console.log(data,localStorage.getItem("userEmail"),new Date())
-    let response = await fetch("http://localhost:5000/api/auth/orderData", {
+    // console.log(data, localStorage.getItem("userEmail"), new Date());
+    let response = await fetch("http://localhost:5000/api/orderData", {
       // credentials: 'include',
       // Origin:"http://localhost:3000/login",
       method: "POST",
@@ -25,6 +28,7 @@ export default function Cart() {
       },
       body: JSON.stringify({
         order_data: data,
+        // order_data: flatted.stringify(data),
         email: userEmail,
         order_date: new Date().toDateString(),
       }),
@@ -38,7 +42,6 @@ export default function Cart() {
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
   return (
     <div>
-      {console.log(data)}
       <div className="container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md">
         <table className="table table-hover ">
           <thead className=" text-success fs-4">
@@ -53,7 +56,7 @@ export default function Cart() {
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr>
+              <tr key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>{food.name}</td>
                 <td>{food.qty}</td>
@@ -79,8 +82,7 @@ export default function Cart() {
         </div>
         <div>
           <button className="btn bg-success mt-5 " onClick={handleCheckOut}>
-            {" "}
-            Check Out{" "}
+            Check Out
           </button>
         </div>
       </div>

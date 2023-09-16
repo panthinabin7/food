@@ -14,6 +14,7 @@ const Navbar = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
   };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-success">

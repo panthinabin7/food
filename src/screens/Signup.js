@@ -27,8 +27,6 @@ const Signup = () => {
     if (!json.success) {
       alert("Enter valid Credentials");
     }
-
-    console.log(json);
   };
 
   const onChange = (event) => {
