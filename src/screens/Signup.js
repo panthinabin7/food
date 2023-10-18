@@ -26,6 +26,8 @@ const Signup = () => {
     const json = await response.json();
     if (!json.success) {
       alert("Enter valid Credentials");
+    } else {
+      alert("created sucessfully");
     }
   };
 
